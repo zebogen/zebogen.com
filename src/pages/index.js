@@ -10,6 +10,7 @@ const IndexPage = () => (
 )
 
 const Heading = styled.h1`
+  margin-top: 3rem;
   text-decoration: underline;
 `;
 
