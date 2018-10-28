@@ -13,7 +13,8 @@ const Heading = styled.h1`
   text-decoration: underline;
 `;
 
-const Subheading = styled.h3`
+const Subheading = styled.p`
+  font-size: 24px;
   font-style: italic;
 `;
 
