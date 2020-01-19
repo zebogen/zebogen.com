@@ -4,19 +4,12 @@ import Layout from '../components/layout'
 
 const IndexPage = () => (
   <Layout>
-    <Heading>zebogen</Heading>
-    <Subheading>a.k.a Matt Bogen</Subheading>
+    <Subheading>Hi, I'm Matt Bogen. I'm a software engineer based in NYC.</Subheading>
   </Layout>
-)
-
-const Heading = styled.h1`
-  margin-top: 4rem;
-  text-decoration: underline;
-`;
+);
 
 const Subheading = styled.p`
   font-size: 24px;
-  font-style: italic;
 `;
 
 export default IndexPage
