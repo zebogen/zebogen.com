@@ -4,7 +4,7 @@ import Layout from '../../components/layout';
 
 const CodePage = () => (
   <Layout>
-    <h1>Projects</h1>
+    <h1>Code</h1>
     <Link to="/code/conway">Conway's Game of Life</Link>
   </Layout>
 );

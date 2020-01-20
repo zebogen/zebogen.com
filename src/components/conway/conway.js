@@ -5,15 +5,17 @@ const CELL_BORDER_SIZE = 1;
 const BORDER_COLOR = '#bcd9e0';
 const CELL_SIZE_WITH_BORDER = CELL_SIZE + CELL_BORDER_SIZE;
 
-function ConwayJs(canvas) {
-  this.canvas = canvas;
+function ConwayJs(canvasId, options = {}) {
+  this.canvas = document.getElementById(canvasId);
+  this.rowCount = options.rowCount || ROW_COUNT;
+  this.columnCount = options.columnCount || COLUMN_COUNT;
   this.state = this.getInitialState(true);
+  this.width = this.columnCount * (CELL_SIZE + CELL_BORDER_SIZE);
+  this.height = this.rowCount * (CELL_SIZE + CELL_BORDER_SIZE);
 }
 
 ConwayJs.prototype.init = function () {
   this.paintBackground();
-  this.paintGrid();
-
   this.render();
 }
 
@@ -24,10 +26,10 @@ ConwayJs.prototype.paintBackground = function () {
   ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 }
 
-ConwayJs.prototype.getInitialState = function (randomize = false) {
+ConwayJs.prototype.getInitialState = function (randomize = true) {
   return {
-    grid: Array.from({ length: ROW_COUNT }).map((_, i) => (
-      Array.from({ length: COLUMN_COUNT }).map((_, j) => ({ i, j, alive: Math.random() < (randomize ? this.currentRandomizationValue() : 0) }))
+    grid: Array.from({ length: this.rowCount }).map((_, i) => (
+      Array.from({ length: this.columnCount }).map((_, j) => ({ i, j, alive: Math.random() < (randomize ? this.currentRandomizationValue() : 0) }))
     )),
     running: false,
     mouseDown: false,
@@ -59,8 +61,8 @@ ConwayJs.prototype.handleMousemove = function (event) {
 }
 
 ConwayJs.prototype.cellsFromMouseEvent = function (event) {
-  const column = Math.floor(event.offsetX / CELL_SIZE_WITH_BORDER);
-  const row = Math.floor(event.offsetY / CELL_SIZE_WITH_BORDER);
+  const column = Math.floor(event.nativeEvent.offsetX / CELL_SIZE_WITH_BORDER);
+  const row = Math.floor(event.nativeEvent.offsetY / CELL_SIZE_WITH_BORDER);
 
   return [
     this.getCell(row, column),
@@ -82,7 +84,6 @@ ConwayJs.prototype.stopRun = function () {
 ConwayJs.prototype.reset = function () {
   const randomize = document.getElementById('randomize').checked;
   this.state = this.getInitialState(randomize);
-  this.paintGrid();
 }
 
 ConwayJs.prototype.render = function () {
@@ -90,6 +91,8 @@ ConwayJs.prototype.render = function () {
     this.tick();
     this.state.generations += 1;
   }
+
+  this.paintGrid();
 
   return requestAnimationFrame(() => this.render());
 }
@@ -119,7 +122,6 @@ ConwayJs.prototype.tick = function () {
   this.state.grid.forEach((row) => {
     row.forEach((cell) => {
       if (cell.newAlive !== cell.alive) {
-        this.paintCell(cell.i, cell.j, cell.newAlive);
         cell.alive = cell.newAlive;
       }
       cell.newAlive = undefined;
