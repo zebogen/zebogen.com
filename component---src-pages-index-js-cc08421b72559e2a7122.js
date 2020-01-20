@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{RXBc:function(n,e,a){"use strict";a.r(e);var t=a("q1tI"),i=a.n(t),o=a("vOnD"),p=a("Bl7J"),s=o.b.p.withConfig({displayName:"pages__Subheading",componentId:"pgvjng-0"})(["font-size:24px;"]);e.default=function(){return i.a.createElement(p.a,null,i.a.createElement(s,null,"Hi, I'm Matt Bogen. I'm a software engineer based in NYC."))}}}]);
+//# sourceMappingURL=component---src-pages-index-js-cc08421b72559e2a7122.js.map
