@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{zAi3:function(e,n,a){"use strict";a.r(n);var t=a("q1tI"),o=a.n(t),c=a("Wbzz"),l=a("Bl7J");n.default=function(){return o.a.createElement(l.a,null,o.a.createElement("h1",null,"Code"),o.a.createElement(c.Link,{to:"/code/conway"},"Conway's Game of Life"))}}}]);
+//# sourceMappingURL=component---src-pages-code-index-js-97245fa1e4d8963953a1.js.map
